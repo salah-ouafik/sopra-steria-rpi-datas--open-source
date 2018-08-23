@@ -1,0 +1,9 @@
+{ 
+    "fileLocations": [                                      
+              {"URIPrefixes": ["https://s3.amazonaws.com/ruche-kinesis/aggregate/2018/08/"]}
+     ],
+     "globalUploadSettings": { 
+     "format": "CSV",  
+     "delimiter": ","
+    }
+}

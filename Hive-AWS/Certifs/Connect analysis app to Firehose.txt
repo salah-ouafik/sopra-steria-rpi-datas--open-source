@@ -1,0 +1,24 @@
+#know the Id
+$ aws kinesisanalytics describe-application --application-name SbS-Ruche-Data | grep ApplicationVersionId
+
+$ aws firehose describe-delivery-stream --delivery-stream-name Ruche-Destination-Data-Stream | grep DeliveryStreamARN
+
+$ aws kinesisanalytics describe-application --application-name SbS-Ruche-Data | grep RoleARN
+
+#Create The Destination Delivery Stream , the final Command
+
+$ aws kinesisanalytics add-application-output --application-name SbS-Ruche-Data --current-application-version-id 10 --application-output 'Name=DESTINATION_SQL_BASIC_STREAM,KinesisFirehoseOutput={ResourceARN= "arn:aws:firehose:us-west-2:000474636549:deliverystream/Ruche-Destination-Data-Stream",RoleARN= "arn:aws:iam::000474636549:role/service-role/kinesis-analytics-SbS-Ruche-Data-us-west-2"},DestinationSchema={RecordFormatType=CSV}'
+
+# NOTE THAT ! the Application version Id changes if we add something ( e.g. : Destination Delivery Stream )  , it means the Id updates any times we update any application configuration
+
+##########################################################
+
+#know the Id
+$ aws kinesisanalytics describe-application --application-name SbS-Ruche-Data | grep ApplicationVersionId
+
+$ aws firehose describe-delivery-stream --delivery-stream-name Ruche-Destination-Aggregate-Stream | grepDeliveryStreamARN
+
+
+#The second command for the second Destination Delivery Stream
+
+$ aws kinesisanalytics add-application-output --application-name SbS-Ruche-Data --current-application-version-id 12 --application-output 'Name=DESTINATION_SQL_AGGREGATE_STREAM,KinesisFirehoseOutput={ResourceARN= "arn:aws:firehose:us-west-2:000474636549:deliverystream/Ruche-Destination-Aggregate-Stream",RoleARN="arn:aws:iam::000474636549:role/service-role/kinesis-analytics-SbS-IoT-Data-us-west-2"},DestinationSchema={RecordFormatType=CSV}'
